@@ -1,1 +1,14 @@
-This was a project from my advanced database class 
+This was the final project from my Advanced Database Sys Mgmt & Design class.
+The instructions for the assignment were 
+- Create a website and SQL database having songs/books/movies/TV shows and related information, such personnel details, duration/length, genre . . .
+  - Minimum of 4 tables
+  - At least 30 songs/books/movies/TV
+- Create a search page that will allow a user to access: (choose two)
+  - all songs/books/movies/TV
+  - all songs/books/movies/TV of the same genre
+  - all songs/books/movies/TV with the same writer/actor/singer/publish
+  - all songs/books/movies/TV with pages/duration between two values.
+- Create an admin page to log new and delete information (Pick 2).
+  - Make sure it has a form to update new information existing songs/books/movies/TV shows.
+  - Make sure it has a form to add new songs/books/movies/TV shows.
+  - Make sure you have a way to delete songs/books/movies/TV shows
