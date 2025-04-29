@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Form</title>
+</head>
+<body>
+    <form action="Add.php" method="post" class="Add">
+        Show Name: <input type="text" name="show" required><br>
+        Episodes: <input type="number" name="episodes" required><br>
+        Seasons: <input type="number" name="seasons" required><br>
+        Start Year: <input type="number" name="StartYear" required><br>
+        End Year(set to NULL for if show is currently ongoing): <input type="text" name="EndYear"><br>
+        Company ID: <input type="number" name="companyid" required><br>
+        Genre ID: <input type="number" name="Genre" required><br>
+        Producer ID: <input type="number" name="producer" required><br>
+        <input class="btn btn-secondary" type="submit" name="myBtns" value="ADD">
+    </form>
+    <hr>
+    <form action="Delete.php" method="post" class="Delete">
+        Show ID to be deleted: <input type="number" name="dshow" required><br>
+        <input class="btn btn-secondary" type="submit" name="myBtns" value="DELETE">
+    </form>
+</body>
+</html>
