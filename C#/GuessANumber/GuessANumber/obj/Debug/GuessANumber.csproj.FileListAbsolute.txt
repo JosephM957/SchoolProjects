@@ -1,0 +1,14 @@
+E:\CPP 270\GuessANumber\GuessANumber\bin\Debug\GuessANumber.exe.config
+E:\CPP 270\GuessANumber\GuessANumber\bin\Debug\GuessANumber.exe
+E:\CPP 270\GuessANumber\GuessANumber\bin\Debug\GuessANumber.pdb
+E:\CPP 270\GuessANumber\GuessANumber\obj\Debug\GuessANumber.csproj.AssemblyReference.cache
+E:\CPP 270\GuessANumber\GuessANumber\obj\Debug\GuessANumber.csproj.CoreCompileInputs.cache
+E:\CPP 270\GuessANumber\GuessANumber\obj\Debug\GuessANumber.exe
+E:\CPP 270\GuessANumber\GuessANumber\obj\Debug\GuessANumber.pdb
+D:\CPP 270\GuessANumber\GuessANumber\obj\Debug\GuessANumber.csproj.AssemblyReference.cache
+D:\CPP 270\GuessANumber\GuessANumber\obj\Debug\GuessANumber.csproj.CoreCompileInputs.cache
+D:\CPP 270\GuessANumber\GuessANumber\obj\Debug\GuessANumber.exe
+D:\CPP 270\GuessANumber\GuessANumber\obj\Debug\GuessANumber.pdb
+D:\CPP 270\GuessANumber\GuessANumber\bin\Debug\GuessANumber.exe.config
+D:\CPP 270\GuessANumber\GuessANumber\bin\Debug\GuessANumber.exe
+D:\CPP 270\GuessANumber\GuessANumber\bin\Debug\GuessANumber.pdb
