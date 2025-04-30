@@ -1,0 +1,9 @@
+Create a page that uses a form to gather all the inputs (at least 20) for a Mad Lib game.  Use the php process discussed in this unit, validate and display the resulting Mad Lib. 
+
+Use CSS and appropriate images to make your page(s) look nice.
+
+Name your folder "madlib" and the php code with the form in it "MadLibForm.php" 
+
+Review the Rubric to see what the requirements for the project are and how the project will be graded.
+
+Zip all files and upload.
