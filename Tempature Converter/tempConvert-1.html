@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Temperature Converters</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		
+		h1	{text-align: center;
+		}
+		
+		body 	{background-color: lime;		
+		}
+		#displayArea	{
+			min-height: 20em;
+			background-color: #ffffff;
+			border-radius: 20px;
+			text-align: center;
+			font-size: 1.5em;
+			border: solid rgb(7, 7, 187) 2px;
+		}
+		
+		#buttonArea	{text-align: center;
+					margin-top: 1.5em;
+		}
+		
+		.btn	{
+			width: 100%;
+		}
+		
+		table, td, th{
+			border: solid purple 1.25px;
+		}
+		td{
+            text-align: center;
+        }
+		table{
+			width: 100%;
+		}
+	</style>
+	
+	<script>
+        function FConvert(){
+            var outputStr = "";
+            var Celsius = 0
+            var Kelvin = 0
+            var Rankine = 0
+            outputStr += "<table> <tr>"
+            outputStr += "<th>Fahrenheit</th>"
+            outputStr += "<th>Celsius</th>"
+            outputStr += "<th>Kelvin</th>"
+            outputStr += "<th>Rankine</th>"
+            outputStr += "<tr>"
+            for(var Fahrenheit = 0; Fahrenheit <= 225; Fahrenheit += 5)
+            {
+                Celsius = Number(((Fahrenheit - 32) * 5 / 9).toFixed(2));
+                Kelvin = Number((Celsius + 273.15).toFixed(2));
+                Rankine = Number((Kelvin * 9/5).toFixed(2));
+                outputStr += "<tr>"
+                outputStr += "<td>" + Fahrenheit + "</td>"
+                outputStr += "<td>" + Celsius + "</td>"
+                outputStr += "<td>" + Kelvin + "</td>"
+                outputStr += "<td>" + Rankine + "</td>"
+                outputStr += "</tr>"
+            }
+            outputStr += "</table>"
+            document.getElementById("displayArea").innerHTML = outputStr
+        }
+        function CConvert(){
+            var outputStr = "";
+            var Celsius = 0
+            var Kelvin = 0
+            var Rankine = 0
+            outputStr += "<table> <tr>"
+            outputStr += "<th>Celsius</th>"
+            outputStr += "<th>Fahrenheit</th>"
+            outputStr += "<th>Kelvin</th>"
+            outputStr += "<th>Rankine</th>"
+            outputStr += "<tr>"
+            for(var Celsius = 0; Celsius <= 100; Celsius++)
+            {
+                Fahrenheit = Number(((Celsius * 9 / 5)+32).toFixed(2));
+                Kelvin = Number((Celsius + 273.15).toFixed(2));
+                Rankine = Number((Kelvin * 9/5).toFixed(2));
+                outputStr += "<tr>"
+                outputStr += "<td>" + Celsius + "</td>"
+                outputStr += "<td>" + Fahrenheit + "</td>"
+                outputStr += "<td>" + Kelvin + "</td>"
+                outputStr += "<td>" + Rankine + "</td>"
+                outputStr += "</tr>"
+            }
+            outputStr += "</table>"
+            document.getElementById("displayArea").innerHTML = outputStr
+        }
+	</script>
+</head>
+<body>
+<div class="container-fluid">
+  <h1>What is the Temperature?</h1>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" id="buttonArea">
+		<div class="row">
+			<div class="col"><button class="btn btn-secondary" onclick="FConvert()">Fahrenheit to Celsius, Kelvin & Rankine</button></div>
+			<div class="col"><button class="btn btn-secondary" onclick="CConvert()">Celsius to Fahrenheit, Kelvin & Rankine</button></div>
+		</div>	
+	</div>
+    <div class="col-lg-2"></div>
+  </div>
+	<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" id="displayArea">
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+</body>
+</html>
