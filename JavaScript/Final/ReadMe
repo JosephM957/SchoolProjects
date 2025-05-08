@@ -1,0 +1,26 @@
+This was an assingment where you need to crate a game of hangman using only javascript, HTML, bootstrap, and CSS.
+# Offical instructions
+Create a hangman game that uses the provided phrases to play a 1 player
+game
+• The phrase should be randomly selected from the list of phrases when a
+new game is started
+• The player will guess letters until one of those following happens:
+o The word or phrase is completely filled in
+o The player correctly guesses the word or phrase (provide an option
+for guessing the puzzle)
+o The player exhausts the number of incorrect guesses
+▪ The maximum number of incorrect guesses is 6
+▪ Visually that is HEAD, BODY, ARM, ARM, LEG, LEG
+▪ Display the appropriate image for each incorrect guess
+• Correct guesses should be properly displayed in the puzzle area
+• Incorrect guesses should also be displayed on the game board
+• Do not allow the same letter to be guessed more than once
+• Appropriate messages should be displayed depending on the game’s
+outcome
+• The player should be allowed to choose to play another game or exit the
+application
+• Use CSS to make the game both visually appealing and easy to read
+• Use comments to internally document your code
+• Excessive use of code copied from the internet or other students will result
+in loss of points – this is an exercise in creating a JavaScript web application,
+start to finish
