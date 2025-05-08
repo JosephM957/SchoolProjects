@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hangman</title>
+    <style>
+        h1 {
+            font-family: Helvetica, Arial, sans-serif;
+
+        }
+        #displayArea, #incorrectGuess
+        {
+            color: rgb(168, 5, 5);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color: aquamarine;
+            font-size: 1.5em;
+        }
+        #incorrectGuess p
+        {
+            font-size: 2em;
+        }
+        body
+        {
+            background-color: #d2b48c;
+        }
+        .buttons 
+        {
+            border: 1.25em;
+            background-color: rgb(255, 120, 143);
+            border-radius: .5em;
+        }
+    </style>
+    <script>
+        var newPhrase = []
+        var guessedLetters = []
+        var fGuesses = 0;
+        //used w3schools to find underline tag
+        var incorrectGuesses = "<h3><u>Incorrect Guesses</u></h3> <p>"
+        var spacedPhrase = []
+        var outputStr = ""
+        var correctGuesses = []
+        var hangman = ""
+        var SplitPhrase = []
+        var guesses = 0;
+        var correctLetter = 0
+        var lgi = 0
+        var lettersGueesed = []
+        function startGame()
+        {
+            var outputStr = ""
+            var phrases = ["You win", "Enjoy your day", "Great work today", "Missouri is my home", "St Louis", "Birthday", "Welcome to the game", "These phrases should be longer", "It is time to play"]
+            var index = RandomizeNums(0, phrases.length - 1)
+            phrases[index] = phrases[index].toLowerCase();
+            newPhrase = phrases[index].split("");
+            console.log(newPhrase);
+            var Buttons = "<button class='buttons' onclick='checkLetter(newPhrase)'>Guess Letter</button>";
+            Buttons += "<button class='buttons' onclick='guessPhrase(newPhrase)'>Guess Phrase</button>";
+            Buttons += "<input type='text' id='guess' placeholder='Enter guess' value=''>";
+            document.getElementById("buttonArea").innerHTML = Buttons
+            document.getElementById("displayArea").innerHTML = outputStr
+        }
+        function checkLetter(newPhrase)
+        {
+            var letter = document.getElementById("guess").value;
+            var hangman = ""
+            var Buttons = ""
+            SplitPhrase = newPhrase
+            correctLetter = 0
+            letter = letter.toLowerCase();
+            if (letter.length == 1)
+            {
+                while (lgi > lettersGueesed.length)
+                {
+                    letter = document.getElementById("guess").value;
+                    if (letter == lettersGueesed[lgi])
+                    {
+                        outputStr += "You already guessed this letter";
+                        var Buttons = "<button class='buttons' onclick='checkLetter(newPhrase)'>Guess Letter</button>";
+                        Buttons += "<button class='buttons' onclick='guessPhrase(newPhrase)'>Guess Phrase</button>";
+                        Buttons += "<input type='text' id='guess' placeholder='Enter guess' value=''>";
+                        document.getElementById("buttonArea").innerHTML = Buttons
+                    }
+                    else if (letter != "")
+                    {
+                        lettersGueesed[lgi] = letter
+                        lgi++;
+                        guessLetter(SplitPhrase)
+                    }
+                    else 
+                    {
+                        var Buttons = "<button class='buttons' onclick='checkLetter(newPhrase)'>Guess Letter</button>";
+                        Buttons += "<button class='buttons' onclick='guessPhrase(newPhrase)'>Guess Phrase</button>";
+                        Buttons += "<input type='text' id='guess' placeholder='Enter guess' value=''>";
+                        document.getElementById("buttonArea").innerHTML = Buttons
+                    }
+                }
+                if (lettersGueesed.length == 0 && letter != "")
+                {
+                        guessLetter(newPhrase)
+                }
+            }
+            else 
+            {
+                outputStr += "Guess is not one letter"
+                document.getElementById("displayArea").innerHTML = outputStr
+            }
+        }
+        function guessPhrase(phrase)
+        {
+            var guess = document.getElementById("guess").value;
+            correctLetter = 0;
+            var tfGuesses = 0
+            hangman = "";
+            var guessA = []
+            if (fGuesses <= 6)
+            {
+                guessA = guess.split("");
+                var counter = 0;
+                //know of foreach loops from other languages and Visual Studio Code auto filled correct syntax
+                phrase.forEach(phrasel => {
+                    if (phrasel == "<br>")
+                    {
+                        phrase[counter] = " "
+                    }
+                    counter++
+                });
+                console.log(phrase)
+                counter = 0
+                guessA.forEach(guessl => {
+                        if (guessl == phrase[counter])
+                        {                 
+                            if (correctGuesses[counter] != null)
+                            {
+                                correctGuesses[counter] = correctGuesses[counter].replace("_", guessl)
+                            }
+                            else 
+                            {
+                                correctGuesses[counter] = guessl
+                            }
+                        }
+                        else
+                        {
+                            tfGuesses++;
+                            if (tfGuesses <= 1)
+                            {
+                                fGuesses++;
+                            }
+                        }
+                        counter++;
+                    });
+                        if (tfGuesses >= 1)
+                        {
+                            switch(fGuesses)
+                            {
+                                case 1:
+                                    hangman = "<img src='img/Head.png'>"
+                                    break;
+                                case 2:
+                                    hangman = "<img src='img/body.png'>"
+                                    break;
+                                case 3: 
+                                    hangman = "<img src='img/arm1.png'>"
+                                    break;
+                                case 4:
+                                    hangman = "<img src='img/arm2.png'>"
+                                    break;
+                                case 5:
+                                    hangman = "<img src='img/leg1.png'>"
+                                    break;
+                                default:
+                                    hangman = "<img src='img/full.png'>"
+                                    outputStr = "You ran out of guesses the answer was"
+                                    for (var i = 0; i < correctGuesses.length; i++)
+                                    {
+                                        outputStr += phrase[i] + " "
+                                    }
+                                    break;
+                            }
+                        }
+                        else 
+                        {
+                            outputStr += "Congrats you won!<br>"
+                            Buttons = "<button class='buttons' onclick='startGame()'>Start Hangman</button>"
+                        }
+                for (var i = 0; i < correctGuesses.length; i++)
+                {
+                    outputStr += correctGuesses[i]
+                }
+            }
+            else 
+            {
+                hangman += "<img src='img/full.png'>"
+                outputStr = "You ran out of guesses the answer was"
+                for (var i = 0; i < correctGuesses.length; i++)
+                {
+                    outputStr += SplitPhrase[i] + " "
+                }
+            }
+            guesses++;
+            Buttons += "<button class='buttons' onclick='checkLetter(newPhrase)'>Guess Letter</button>";
+            Buttons += "<button class='buttons' onclick='guessPhrase(newPhrase)'>Guess Phrase</button>";
+            Buttons += "<input type='text' id='guess' placeholder='Enter guess'>"
+            document.getElementById("buttonArea").innerHTML = Buttons
+            document.getElementById("displayArea").innerHTML = outputStr
+            document.getElementById("hangmanGuy").innerHTML = hangman
+            document.getElementById("incorrectGuess").innerHTML = incorrectGuesses
+        }
+        function RandomizeNums(min, max) 
+        {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function guessLetter(SplitPhrase)
+        {
+            var tfGuesses = 0
+            var letter = document.getElementById("guess").value;
+            var outputStr = ""
+            correctLetter = 0
+            letter = letter.toLowerCase();
+                if (fGuesses < 6)
+                {
+                    while (letter == "")
+                    {
+                        var Buttons = "<button class='buttons' onclick='checkLetter(newPhrase)'>Guess Letter</button>";
+                        Buttons += "<button class='buttons' onclick='guessPhrase(newPhrase)'>Guess Phrase</button>";
+                        Buttons += "<input type='text' id='guess' placeholder='Enter guess' value=''>";
+                        document.getElementById("buttonArea").innerHTML = Buttons
+                        document.getElementById("displayArea").innerHTML = outputStr
+                        document.getElementById("incorrectGuess").innerHTML = incorrectGuesses
+                    }
+                            var counter = 0;
+                            //know of foreach loops from other languages and Visual Studio Code auto filled correct syntax
+                            if (guesses == 0)
+                            {
+                                SplitPhrase.forEach(element => {
+                                    if (" " == element){                    
+                                        correctGuesses[counter] = "<br>"
+                                    }
+                                    else
+                                    {
+                                        correctGuesses[counter] = "_"
+                                    }
+                                    counter++
+                                });
+                            }
+                            console.log(correctGuesses)
+                            counter = 0
+                            SplitPhrase.forEach(element => {
+                                if (letter == element){                    
+                                    correctLetter++;
+                                    if (correctGuesses[counter] != null)
+                                    {
+                                        correctGuesses[counter] = correctGuesses[counter].replace("_", letter)
+                                    }
+                                    else 
+                                    {
+                                        correctGuesses[counter] = letter
+                                    }  
+                                }
+                                else if(correctGuesses[counter] == null)
+                                {
+                                    correctGuesses[counter] = "_"
+                                }
+                                else if(correctGuesses[counter] != "_")
+                                {
+                                }
+                                else
+                                {
+                                    correctGuesses[counter] = "_"
+                                }
+                                counter++
+                            });
+                            console.log(correctGuesses)
+                        for (var i = 0; i < correctGuesses.length; i++)
+                        {
+                            outputStr += correctGuesses[i] + " "
+                        }
+                        var blanksLeft = 0
+                        for (var i = 0; i < correctGuesses.length; i++)
+                        {
+                            if (correctGuesses[i] == "_")
+                            {
+                                blanksLeft++;       
+                            }
+                            else 
+                            {
+
+                            }
+                        }
+                        if (blanksLeft == 0)
+                        {
+                            outputStr += "<br>Congrats you won!"
+                            Buttons = "<button class='buttons' onclick='startGame()'>Start Hangman</button>"
+                        }
+                        if (correctLetter == 0)
+                        {
+                            incorrectGuesses += letter + " "
+                            fGuesses++;
+                            switch(fGuesses)
+                            {
+                                case 1:
+                                    hangman = "<img src='img/Head.png'>"
+                                    break;
+                                case 2:
+                                    hangman = "<img src='img/body.png'>"
+                                    break;
+                                case 3: 
+                                    hangman = "<img src='img/arm1.png'>"
+                                    break;
+                                case 4:
+                                    hangman = "<img src='img/arm2.png'>"
+                                    break;
+                                case 5:
+                                    hangman = "<img src='img/leg1.png'>"
+                                    break;
+                                default:
+                                    hangman = "<img src='img/full.png'>"
+                                    outputStr = ""
+                                    outputStr += "You ran out of guesses the answer was\n"
+                                    for (var i = 0; i < correctGuesses.length; i++)
+                                    {
+                                        outputStr += SplitPhrase[i]
+                                    }
+                                    break;
+                            }
+                        } 
+                }
+            else 
+            {
+                hangman = "<img src='img/full.png'>"
+                outputStr = ""
+                outputStr += "You ran out of guesses the answer was\n"
+                for (var i = 0; i < correctGuesses.length; i++)
+                {
+                    outputStr += SplitPhrase[i]
+                }
+            }
+            guesses++;
+            var Buttons = "<button class='buttons' onclick='checkLetter(newPhrase)' id='gletter'>Guess Letter</button>";
+            Buttons += "<button class='buttons' onclick='guessPhrase(newPhrase)' id=gphrase>Guess Phrase</button>";
+            Buttons += "<input type='text' id='guess' placeholder='Enter guess' value=''>";
+            document.getElementById("buttonArea").innerHTML = Buttons
+            document.getElementById("displayArea").innerHTML = outputStr
+            document.getElementById("hangmanGuy").innerHTML = hangman
+            document.getElementById("incorrectGuess").innerHTML = incorrectGuesses
+            
+        }
+    </script>
+</head>
+<body>
+	<h1>Can you guess the phrase?</h1>
+    <div class="row">
+	    <div class="button-group" id="buttonArea">
+	    	<button class="buttons" onclick="startGame()">Start Hangman</button>
+	    </div>
+    </div>
+    <div class="row">
+        <div id="displayArea"></div>
+    </div>
+    <div class="row">
+        <div id="incorrectGuess"></div>
+    </div>
+    <div class="row">
+        <div id="hangmanGuy"></div>
+    </div>
+</body>
+</html>
